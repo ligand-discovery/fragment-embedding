@@ -10,7 +10,7 @@ root = os.path.dirname(os.path.abspath(__file__))
 
 import sys
 
-sys.path.append(os.path.join(root, "..", "src"))
+sys.path.append(os.path.join(root, "..", "fragmentembedding"))
 
 from grover_desc import GroverDescriptor
 

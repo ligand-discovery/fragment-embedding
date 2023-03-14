@@ -10,7 +10,6 @@ from keras.models import Sequential
 from keras.layers import Dense, Dropout
 from keras.backend import clear_session, set_session, get_session
 from tensorflow.keras.optimizers import Adam
-from sklearn.model_selection import train_test_split
 
 import tensorflow as tf
 

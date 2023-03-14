@@ -1,6 +1,5 @@
-tabpfn
-pandas
-keras
-tensorflow
+joblib
+scikit-learn
 rdkit
 tqdm
+onnxruntime

@@ -11,7 +11,7 @@ root = os.path.dirname(os.path.abspath(__file__))
 
 import sys
 
-sys.path.append(os.path.join(root, "..", "src"))
+sys.path.append(os.path.join(root, "..", "fragmentembedding"))
 
 output_folder = os.path.join(root, "..", "data", "physchem")
 if os.path.exists(output_folder):
