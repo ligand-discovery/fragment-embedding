@@ -1,0 +1,6 @@
+tabpfn
+pandas
+keras
+tensorflow
+rdkit
+tqdm

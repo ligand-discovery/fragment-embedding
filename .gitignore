@@ -1,3 +1,14 @@
+data/grover
+data/mordred
+data/morgan
+data/physchem
+data/fff_library_split*
+data/fid_fff_all_embedding.npy
+data/data_for_training.h5
+data/fff_library
+
+results/encoder_model
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
