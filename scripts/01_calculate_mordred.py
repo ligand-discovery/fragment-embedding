@@ -9,6 +9,7 @@ import numpy as np
 root = os.path.dirname(os.path.abspath(__file__))
 
 import sys
+
 sys.path.append(os.path.join(root, "..", "src"))
 
 output_folder = os.path.join(root, "..", "data", "mordred")
@@ -19,7 +20,14 @@ os.mkdir(output_folder)
 from mordred_desc import MordredDescriptor
 
 desc = MordredDescriptor()
-smiles = pd.read_csv(os.path.join(root, "..", "data", "enamine_stock.csv"))["smiles"].tolist() + pd.read_csv(os.path.join(root, "..", "data", "fid2can_fff_all.tsv"), delimiter="\t")["smiles"].tolist()
+smiles = (
+    pd.read_csv(os.path.join(root, "..", "data", "enamine_stock.csv"))[
+        "smiles"
+    ].tolist()
+    + pd.read_csv(
+        os.path.join(root, "..", "data", "fid2can_fff_all.tsv"), delimiter="\t"
+    )["smiles"].tolist()
+)
 
 desc.fit(smiles)
 

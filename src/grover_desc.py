@@ -6,7 +6,9 @@ from sklearn.preprocessing import RobustScaler
 
 root = os.path.dirname(os.path.abspath(__file__))
 PATH = os.path.abspath(os.path.join(root, "..", "tools", "grover"))
-MODEL = os.path.abspath(os.path.join(root, "..", "data", "checkpoints", "grover_large.pt"))
+MODEL = os.path.abspath(
+    os.path.join(root, "..", "data", "checkpoints", "grover_large.pt")
+)
 
 
 def grover_featurizer(smiles_list):
@@ -15,8 +17,7 @@ def grover_featurizer(smiles_list):
     return X
 
 
-class GroverDescriptor():
-
+class GroverDescriptor:
     def __init__(self):
         pass
 

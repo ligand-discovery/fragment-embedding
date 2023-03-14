@@ -9,6 +9,7 @@ import pandas as pd
 
 MAX_NA = 0.2
 
+
 class NanFilter(object):
     def __init__(self):
         self._name = "nan_filter"
@@ -111,7 +112,8 @@ class VarianceFilter(object):
 
     def load(self, file_name):
         return joblib.load(file_name)
-    
+
+
 def mordred_featurizer(smiles):
     calc = Calculator(descriptors, ignore_3D=True)
     df = calc.pandas([Chem.MolFromSmiles(smi) for smi in smiles])
@@ -119,7 +121,6 @@ def mordred_featurizer(smiles):
 
 
 class MordredDescriptor(object):
-
     def __init__(self):
         self.nan_filter = NanFilter()
         self.imputer = Imputer()

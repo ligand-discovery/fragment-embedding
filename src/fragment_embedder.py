@@ -7,23 +7,30 @@ CHUNKSIZE = 1024
 
 
 class FragmentEmbedder(object):
-
     def __init__(self, models_dir=None):
         if models_dir is None:
-            models_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "results")
+            models_dir = os.path.join(
+                os.path.dirname(os.path.abspath(__file__)), "..", "results"
+            )
         self.models_dir = os.path.abspath(models_dir)
-        self.morgan_desc = joblib.load(os.path.join(models_dir, "morgan_descriptor.joblib"))
-        self.physchem_desc = joblib.load(os.path.join(models_dir, "physchem_descriptor.joblib"))
+        self.morgan_desc = joblib.load(
+            os.path.join(models_dir, "morgan_descriptor.joblib")
+        )
+        self.physchem_desc = joblib.load(
+            os.path.join(models_dir, "physchem_descriptor.joblib")
+        )
 
     def _chunker(self, l, n):
         for i in range(0, len(l), n):
-            yield l[i:i + n]
+            yield l[i : i + n]
 
     def encoder_inference(self, X):
         sess = rt.InferenceSession(os.path.join(self.models_dir, "encoder_model.onnx"))
         input_name = sess.get_inputs()[0].name
         output_name = sess.get_outputs()[0].name
-        output_data = sess.run([output_name], {input_name: np.array(X, dtype=np.float32)})
+        output_data = sess.run(
+            [output_name], {input_name: np.array(X, dtype=np.float32)}
+        )
         Y = np.array(output_data[0])
         return Y
 

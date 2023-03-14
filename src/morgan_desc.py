@@ -19,7 +19,6 @@ def get_ecfp_fingerprint(smiles_list):
 
 
 class MorganFingerprint(object):
-
     def __init__(self):
         self.variance_filter = VarianceThreshold(threshold=0)
 

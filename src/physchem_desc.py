@@ -10,6 +10,7 @@ from tqdm import tqdm
 
 MAX_NA = 0.2
 
+
 class NanFilter(object):
     def __init__(self):
         self._name = "nan_filter"
@@ -97,12 +98,13 @@ def physchem_featurizer(smiles_list):
 
 
 class PhyschemDescriptor(object):
-
     def __init__(self):
         self.nan_filter = NanFilter()
         self.imputer = Imputer()
         self.variance_filter = VarianceFilter()
-        self.discretizer = KBinsDiscretizer(n_bins=5, encode="ordinal", strategy="quantile")
+        self.discretizer = KBinsDiscretizer(
+            n_bins=5, encode="ordinal", strategy="quantile"
+        )
 
     def fit(self, smiles):
         df = physchem_featurizer(smiles)

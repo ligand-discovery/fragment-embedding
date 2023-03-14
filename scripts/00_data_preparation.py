@@ -17,15 +17,18 @@ with open("../data/fff_library.tsv", "w") as f:
         writer.writerow([smi])
 
 
-def split(filehandler, delimiter=',', row_limit=10000,
-          output_name_template='../data/fff_library_split_%s.tsv', output_path='.', keep_headers=False):
+def split(
+    filehandler,
+    delimiter=",",
+    row_limit=10000,
+    output_name_template="../data/fff_library_split_%s.tsv",
+    output_path=".",
+    keep_headers=False,
+):
     reader = csv.reader(filehandler, delimiter=delimiter)
     current_piece = 1
-    current_out_path = os.path.join(
-        output_path,
-        output_name_template % current_piece
-    )
-    current_out_writer = csv.writer(open(current_out_path, 'w'), delimiter=delimiter)
+    current_out_path = os.path.join(output_path, output_name_template % current_piece)
+    current_out_writer = csv.writer(open(current_out_path, "w"), delimiter=delimiter)
     current_limit = row_limit
     if keep_headers:
         headers = next(reader.next)
@@ -35,12 +38,14 @@ def split(filehandler, delimiter=',', row_limit=10000,
             current_piece += 1
             current_limit = row_limit * current_piece
             current_out_path = os.path.join(
-                output_path,
-                output_name_template % current_piece
+                output_path, output_name_template % current_piece
             )
-            current_out_writer = csv.writer(open(current_out_path, 'w'), delimiter=delimiter)
+            current_out_writer = csv.writer(
+                open(current_out_path, "w"), delimiter=delimiter
+            )
             if keep_headers:
                 current_out_writer.writerow(headers)
         current_out_writer.writerow(row)
+
 
 split(open("../data/fff_library.tsv", "r"))

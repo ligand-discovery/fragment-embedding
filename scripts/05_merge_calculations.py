@@ -16,9 +16,15 @@ with h5py.File(os.path.join(data_folder, "data_for_training.h5"), "w") as g:
     X = None
     for i in tqdm(range(len(tsv_files))):
         n = i + 1
-        with h5py.File(os.path.join(data_folder, "grover", "fff_library_split_{0}.h5".format(n)), "r") as f:
+        with h5py.File(
+            os.path.join(data_folder, "grover", "fff_library_split_{0}.h5".format(n)),
+            "r",
+        ) as f:
             X_0 = f["V"][:]
-        with h5py.File(os.path.join(data_folder, "mordred", "fff_library_split_{0}.h5".format(n)), "r") as f:
+        with h5py.File(
+            os.path.join(data_folder, "mordred", "fff_library_split_{0}.h5".format(n)),
+            "r",
+        ) as f:
             X_1 = f["V"][:]
         X_ = np.hstack([X_0, X_1])
         if X is None:
@@ -33,9 +39,15 @@ with h5py.File(os.path.join(data_folder, "data_for_training.h5"), "w") as g:
     X = None
     for i in tqdm(range(len(tsv_files))):
         n = i + 1
-        with h5py.File(os.path.join(data_folder, "morgan", "fff_library_split_{0}.h5".format(n)), "r") as f:
+        with h5py.File(
+            os.path.join(data_folder, "morgan", "fff_library_split_{0}.h5".format(n)),
+            "r",
+        ) as f:
             X_0 = f["V"][:]
-        with h5py.File(os.path.join(data_folder, "physchem", "fff_library_split_{0}.h5".format(n)), "r") as f:
+        with h5py.File(
+            os.path.join(data_folder, "physchem", "fff_library_split_{0}.h5".format(n)),
+            "r",
+        ) as f:
             X_1 = f["V"][:]
         X_ = np.hstack([X_0, X_1])
         if X is None:
