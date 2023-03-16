@@ -20,3 +20,7 @@ smiles_list = ["C#CCCC1(CCC(=O)N2CCN(Cc3cccc(F)c3)C(=O)C2)N=N1", "C#CCCC1(CCC(=O
 fe = FragmentEmbedding()
 X = fe.transform(smiles_list)
 ```
+
+## About
+
+This project was performed at [Georg Winter Lab](https://www.winter-lab.com/), based at [CeMM](https://cemm.at), Vienna.
