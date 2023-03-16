@@ -5,8 +5,8 @@ Create a fragment embedding descriptor focused on the CRF fragment space. The de
 ## Installation
 
 ```bash
-git clone https://github.com/ligand-discovery/fragment-descriptor.git
-cd fragment-descriptor
+git clone https://github.com/ligand-discovery/fragment-embedding.git
+cd fragment-embedding
 python -m pip install -e .
 ```
 
