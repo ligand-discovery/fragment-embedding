@@ -2,8 +2,13 @@ import os
 import joblib
 import numpy as np
 import onnxruntime as rt
+import sys
+
 
 CHUNKSIZE = 1024
+
+root = os.path.abspath(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(root)
 
 
 class FragmentEmbedder(object):

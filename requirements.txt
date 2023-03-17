@@ -1,3 +1,4 @@
+pandas
 joblib
 scikit-learn
 rdkit

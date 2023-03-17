@@ -13,12 +13,14 @@ python -m pip install -e .
 ## Usage
 
 ```python
-from fragmentembedding import FragmentEmbedding
+from fragmentembedding import FragmentEmbedder
 
 smiles_list = ["C#CCCC1(CCC(=O)N2CCN(Cc3cccc(F)c3)C(=O)C2)N=N1", "C#CCCC1(CCC(=O)N2CCN(Cc3cccc(C(F)(F)F)c3)CC2)N=N1", "C#CCCC1(CCC(=O)N2CCN3CC(F)(F)C[C@H]3C2)N=N1"]
 
-fe = FragmentEmbedding()
+fe = FragmentEmbedder()
 X = fe.transform(smiles_list)
+
+print(X.shape)
 ```
 
 ## About
