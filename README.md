@@ -1,6 +1,6 @@
 # Fully Functionalized Fragment Embeddings
 
-Create a fragment embedding descriptor focused on the CRF fragment space. The descriptor is a lightweight 512-dimensional embedding capturing graph connectivity properties as well as physicochemical properties of the fragments.
+This repository contains a lightweight, pre-trained neural network to obtain a 512-dimensional embedding (vector) specific to fully functionalized fragments. The model has been trained on the Enamine REAL and Enamine Stock FFF libraries. It is aimed at capturing graph connectivity properties as well as physicochemical properties of the CRF fragments.
 
 ## Installation
 
@@ -12,16 +12,24 @@ python -m pip install -e .
 
 ## Usage
 
+Fragment embeddings can be produced with a simple Python API as follows:
+
 ```python
 from fragmentembedding import FragmentEmbedder
 
-smiles_list = ["C#CCCC1(CCC(=O)N2CCN(Cc3cccc(F)c3)C(=O)C2)N=N1", "C#CCCC1(CCC(=O)N2CCN(Cc3cccc(C(F)(F)F)c3)CC2)N=N1", "C#CCCC1(CCC(=O)N2CCN3CC(F)(F)C[C@H]3C2)N=N1"]
+smiles_list = [
+        "C#CCCC1(CCC(=O)N2CCN(Cc3cccc(F)c3)C(=O)C2)N=N1",
+        "C#CCCC1(CCC(=O)N2CCN(Cc3cccc(C(F)(F)F)c3)CC2)N=N1",
+        "C#CCCC1(CCC(=O)N2CCN3CC(F)(F)C[C@H]3C2)N=N1"
+    ]
 
 fe = FragmentEmbedder()
 X = fe.transform(smiles_list)
 
 print(X.shape)
 ```
+
+The expected shape of `X` is `(3, 512)`.
 
 ## About
 
