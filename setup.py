@@ -12,7 +12,7 @@ setup(
     version="0.0.1",
     author="Miquel Duran-Frigola",
     author_email="miquel@ersilia.io",
-    url="https://github.com/github.com/fragment-embedding",
+    url="https://github.com/ligand-discovery/fragment-embedding",
     description="Fully Functionalized Fragment Embedding for the Ligand Discovery project",
     long_description=long_description,
     long_description_content_type="text/markdown",
