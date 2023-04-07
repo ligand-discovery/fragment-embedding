@@ -20,6 +20,8 @@ setup(
     python_requires=">=3.10",
     install_requires=install_requires,
     packages=find_packages(exclude=("utilities")),
+    package_dir={'fragmentembedding': 'fragmentembedding'},
+    package_data={'fragmentembedding': ['data/*.joblib']},
     entry_points={"console_scripts": []},
     classifiers=[
         "Programming Language :: Python :: 3.10",
