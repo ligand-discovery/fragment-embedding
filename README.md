@@ -14,6 +14,8 @@ cd fragment-embedding
 python -m pip install -e .
 ```
 
+Please note that installation should be done in development `-e` mode to ensure that model files (`.joblib`) are accessible to the package.
+
 ## Usage
 
 Fragment embeddings can be produced with a simple Python API as follows:
