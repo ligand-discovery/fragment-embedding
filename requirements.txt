@@ -1,6 +1,6 @@
 pandas
 joblib
 scikit-learn
-rdkit
+rdkit==2022.09.05
 tqdm
 onnxruntime
