@@ -97,17 +97,29 @@ def physchem_featurizer(smiles_list):
     return np.array(R)
 
 
+def physchem_featurizer_as_dataframe(smiles_list):
+    R = []
+    for smiles in tqdm(smiles_list):
+        mol = Chem.MolFromSmiles(smiles)
+        descriptors = []
+        for _, descr_calc_fn in Descriptors._descList:
+            descriptors.append(descr_calc_fn(mol))
+        R += [np.array(descriptors)]
+    return pd.DataFrame(np.array(R), columns=[x[0] for x in Descriptors._descList])
+
+
 class PhyschemDescriptor(object):
-    def __init__(self):
+    def __init__(self, discretize=True):
         self.nan_filter = NanFilter()
         self.imputer = Imputer()
         self.variance_filter = VarianceFilter()
         self.discretizer = KBinsDiscretizer(
             n_bins=5, encode="ordinal", strategy="quantile"
         )
+        self.discretize = discretize
 
     def fit(self, smiles):
-        df = physchem_featurizer(smiles)
+        df = physchem_featurizer_as_dataframe(smiles)
         X = np.array(df, dtype=np.float32)
         self.nan_filter.fit(X)
         X = self.nan_filter.transform(X)
@@ -115,13 +127,18 @@ class PhyschemDescriptor(object):
         X = self.imputer.transform(X)
         self.variance_filter.fit(X)
         X = self.variance_filter.transform(X)
-        self.discretizer.fit(X)
+        if self.discretize:
+            self.discretizer.fit(X)
+        col_idxs = self.variance_filter.col_idxs
+        feature_names = list(df.columns)
+        self.feature_names = [feature_names[i] for i in col_idxs]
 
     def transform(self, smiles):
-        df = physchem_featurizer(smiles)
+        df = physchem_featurizer_as_dataframe(smiles)
         X = np.array(df, dtype=np.float32)
         X = self.nan_filter.transform(X)
         X = self.imputer.transform(X)
         X = self.variance_filter.transform(X)
-        X = self.discretizer.transform(X)
+        if self.discretize:
+            X = self.discretizer.transform(X)
         return np.array(X, dtype=int)
