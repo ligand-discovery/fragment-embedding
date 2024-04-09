@@ -119,6 +119,37 @@ class PhyschemDescriptor(object):
         self.discretize = discretize
 
     def fit(self, smiles):
+        R = physchem_featurizer(smiles)
+        X = np.array(R, dtype=np.float32)
+        self.nan_filter.fit(X)
+        X = self.nan_filter.transform(X)
+        self.imputer.fit(X)
+        X = self.imputer.transform(X)
+        self.variance_filter.fit(X)
+        X = self.variance_filter.transform(X)
+        self.discretizer.fit(X)
+
+    def transform(self, smiles):
+        df = physchem_featurizer_as_dataframe(smiles)
+        X = np.array(df, dtype=np.float32)
+        X = self.nan_filter.transform(X)
+        X = self.imputer.transform(X)
+        X = self.variance_filter.transform(X)
+        X = self.discretizer.transform(X)
+        return np.array(X, dtype=int)
+
+
+class PhyschemDescriptorWithFeatures(object):
+    def __init__(self, discretize=True):
+        self.nan_filter = NanFilter()
+        self.imputer = Imputer()
+        self.variance_filter = VarianceFilter()
+        self.discretizer = KBinsDiscretizer(
+            n_bins=5, encode="ordinal", strategy="quantile"
+        )
+        self.discretize = discretize
+
+    def fit(self, smiles):
         df = physchem_featurizer_as_dataframe(smiles)
         X = np.array(df, dtype=np.float32)
         self.nan_filter.fit(X)
